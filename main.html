@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+ <style>
+table, th, td {
+    border: 1px solid black;
+}
+#paragon{
+    text-indent:100px;
+}
+ </style>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Receipt</title>
+  <script type="module" src="app.js"></script>
+  <link rel="stylesheet" href="basic.css">
+</head>
+
+<body>
+    <h3>Nowa pozycja</h3>
+  <form id="add" class="form">
+    <div class="form-control">
+      <label for="name">Nazwa</label>
+      <input type="text" id="name">
+      <small></small>
+    </div>
+
+    <div class="form-control">
+      <label for="quantity">Ilość</label>
+      <input type="text" id="quantity">
+      <small></small>
+    </div>
+
+    <div class="form-control">
+      <label for="price">Cena</label>
+      <input type="text" id="price">
+      <small></small>
+    </div>
+
+    <input type="submit" value="Dodaj" id="Add">
+    <h4 id="paragon">Paragon</h4>
+  </form>
+
+
+  <table id="products">
+    <tr>
+        <th>LP</th>
+        <th>NAZWA</th>
+        <th>ILOŚĆ</th>
+        <th>CENA</th>
+        <th>SUMA</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Jabłka</td>
+        <td>1,5</td>
+        <td>4,90zł</td>
+        <td>7,35zł</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Bułka</td>
+        <td>5</td>
+        <td>0.49zł</td>
+        <td>2,45zł</td>
+      </tr>
+  </table>
+</body>
+
+</html>
