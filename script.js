@@ -2,7 +2,19 @@ const buttonSubmit = () => {
     let nameInput = document.getElementById("name").value;
     let quantityInput = document.getElementById("quantity").value;
     let priceInput = document.getElementById("price").value;
-
+    console.log(nameInput);
+    nameInput ??= "Brak nazwy";
+    quantityInput ??= 0;
+    priceInput ??= 0; 
+    if(nameInput == ""){
+        nameInput = "Brak nazwy";
+    }
+    if(quantityInput == ""){
+        quantityInput = 0;
+    }
+    if(priceInput == ""){
+        priceInput = 0;
+    }
     const table = document.getElementById("tbody-products");
     let rows = table.getElementsByTagName('tr');
 
@@ -12,11 +24,13 @@ const buttonSubmit = () => {
 
     // console.log(rows.length);
     rows[rows.length - 1].children[0]["innerText"] = rows.length;
+    sumReceipt();
 }
 
 const deleteRow = (number) => {
     document.getElementById("tbody-products").deleteRow(number);
     editNumberRow();
+    sumReceipt();
 }
 
 const editNumberRow = () => {
@@ -32,7 +46,10 @@ const sumReceipt = () => {
     var table = document.getElementById("tbody-products");
     let sum=0;
     for (var i = 0; i < table.rows.length; i++) {
-        console.log(i);
-        sum += table.rows[i].cells[4].innerHTML;
+        let value = table.rows[i].cells[4].innerHTML.split('zł')[0].replace(',', '.');
+        value = Number(value);
+        // console.log(value);
+        sum += value;
     }
+    document.getElementById("costSummary-sum").innerHTML = sum + 'zł';
 }
