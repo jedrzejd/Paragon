@@ -5,14 +5,14 @@ const buttonSubmit = () => {
     console.log(nameInput);
     nameInput ??= "Brak nazwy";
     quantityInput ??= 0;
-    priceInput ??= 0; 
-    if(nameInput == ""){
+    priceInput ??= 0;
+    if (nameInput == "") {
         nameInput = "Brak nazwy";
     }
-    if(quantityInput == ""){
+    if (quantityInput == "") {
         quantityInput = 0;
     }
-    if(priceInput == ""){
+    if (priceInput == "") {
         priceInput = 0;
     }
     const table = document.getElementById("tbody-products");
@@ -37,14 +37,14 @@ const editNumberRow = () => {
     var table = document.getElementById("tbody-products");
 
     for (var i = 0; i < table.rows.length; i++) {
-        table.rows[i].cells[0].innerHTML = i+1;
+        table.rows[i].cells[0].innerHTML = i + 1;
         table.rows[i].cells[5].innerHTML = `<input type="submit" value="Usuń" id="Delete_button" onclick="deleteRow(${i})"></input>`;
     }
 }
 
 const sumReceipt = () => {
     var table = document.getElementById("tbody-products");
-    let sum=0;
+    let sum = 0;
     for (var i = 0; i < table.rows.length; i++) {
         let value = table.rows[i].cells[4].innerHTML.split('zł')[0].replace(',', '.');
         value = Number(value);
@@ -53,3 +53,25 @@ const sumReceipt = () => {
     }
     document.getElementById("costSummary-sum").innerHTML = sum + 'zł';
 }
+
+
+function editRow() {
+    var table = document.getElementById("tbody-products"), rIndex;
+    for (var i = 0; i < table.rows.length; i++) {
+        table.rows[i].onclick = function () {
+            rIndex = this.rowIndex;
+            console.log(rIndex);
+
+            document.getElementById("name").value = this.cells[1].innerHTML;
+            document.getElementById("quantity").value = this.cells[2].innerHTML.split('zł')[0].replace(',', '.');
+            document.getElementById("price").value = this.cells[3].innerHTML.split('zł')[0].replace(',', '.');
+        };
+    }
+    table.rows[rIndex-1].cells[1].innerHTML = document.getElementById("name").value;
+    table.rows[rIndex-1].cells[2].innerHTML = document.getElementById("quantity").value + "zł";
+    table.rows[rIndex-1].cells[3].innerHTML = document.getElementById("price").value + "zł";
+    table.rows[rIndex-1].cells[4].innerHTML = document.getElementById("quantity").value * document.getElementById("price").value + "zł";
+    sumReceipt();
+}
+
+sumReceipt();
