@@ -19,7 +19,7 @@ const buttonSubmit = () => {
     const table = document.getElementById("tbody-products");
     let rows = table.getElementsByTagName('tr');
 
-    let template = `<tr> <td></td> <td>${nameInput}</td> <td>${quantityInput}</td> <td>${priceInput}zł</td> <td>${quantityInput * priceInput}zł</td> <td> <input type="submit" value="Usuń" class="btn btn-primary" id="Delete_button" onclick="deleteRow(${rows.length})"></td></tr> `;
+    let template = `<tr> <td></td> <td>${nameInput}</td> <td>${quantityInput}</td> <td>${priceInput}zł</td> <td>${quantityInput * priceInput}zł</td> <td> <input type="submit" value="Usuń" class="btn btn-danger" id="Delete_button" onclick="deleteRow(${rows.length})"></td></tr> `;
 
     table.innerHTML += template;
 
