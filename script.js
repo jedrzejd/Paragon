@@ -6,6 +6,7 @@ const buttonSubmit = () => {
     nameInput ??= "Brak nazwy";
     quantityInput ??= 0;
     priceInput ??= 0;
+    priceInput = Number(priceInput).toFixed(2) //round to 2 
     if (nameInput == "") {
         nameInput = "Brak nazwy";
     }
@@ -18,7 +19,7 @@ const buttonSubmit = () => {
     let table = document.getElementById("tbody-products");
     let rows = table.getElementsByTagName('tr');
 
-    let template = `<tr> <td></td> <td>${nameInput}</td> <td>${quantityInput}</td> <td>${priceInput}zł</td> <td>${quantityInput * priceInput}zł</td> <td> <input type="submit" value="Usuń" id="Delete_button" onclick="deleteRow(${rows.length})"></td></tr> `;
+    let template = `<tr> <td></td> <td>${nameInput}</td> <td>${quantityInput}</td> <td>${priceInput}zł</td> <td>${quantityInput * priceInput}zł</td> <td> <input type="submit" value="Usuń" class="btn btn-danger" id="Delete_button" onclick="deleteRow(${rows.length})"></td></tr> `;
 
     table.innerHTML += template;
 
@@ -61,7 +62,7 @@ const sumReceipt = () => {
         // console.log(value);
         sum += value;
     }
-    document.getElementById("costSummary-sum").innerHTML = sum + 'zł';
+    document.getElementById("costSummary-sum").innerHTML = Number(sum).toFixed(2) + 'zł';
 }
 
 const updateCopyFromRowToForm = () => {
