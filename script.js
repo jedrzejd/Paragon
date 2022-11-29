@@ -6,6 +6,7 @@ const buttonSubmit = () => {
     nameInput ??= "Brak nazwy";
     quantityInput ??= 0;
     priceInput ??= 0;
+    priceInput = Number(priceInput).toFixed(2) //round to 2 
     if (nameInput == "") {
         nameInput = "Brak nazwy";
     }
@@ -51,7 +52,7 @@ const sumReceipt = () => {
         // console.log(value);
         sum += value;
     }
-    document.getElementById("costSummary-sum").innerHTML = sum + 'zł';
+    document.getElementById("costSummary-sum").innerHTML = Number(sum).toFixed(2) + 'zł';
 }
 
 
