@@ -16,7 +16,7 @@ const buttonSubmit = () => {
     if (priceInput == "") {
         priceInput = 0;
     }
-    const table = document.getElementById("tbody-products");
+    let table = document.getElementById("tbody-products");
     let rows = table.getElementsByTagName('tr');
 
     let template = `<tr> <td></td> <td>${nameInput}</td> <td>${quantityInput}</td> <td>${priceInput}zł</td> <td>${quantityInput * priceInput}zł</td> <td> <input type="submit" value="Usuń" class="btn btn-danger" id="Delete_button" onclick="deleteRow(${rows.length})"></td></tr> `;
@@ -25,13 +25,23 @@ const buttonSubmit = () => {
 
     // console.log(rows.length);
     rows[rows.length - 1].children[0]["innerText"] = rows.length;
+    rows[rows.length - 1].onclick = function () {
+        rIndex = this.rowIndex;
+        console.log(rIndex);
+
+        document.getElementById("name").value = this.cells[1].innerHTML;
+        document.getElementById("quantity").value = this.cells[2].innerHTML.split('zł')[0].replace(',', '.');
+        document.getElementById("price").value = this.cells[3].innerHTML.split('zł')[0].replace(',', '.');
+    };
     sumReceipt();
+    updateCopyFromRowToForm();
 }
 
 const deleteRow = (number) => {
     document.getElementById("tbody-products").deleteRow(number);
     editNumberRow();
     sumReceipt();
+    updateCopyFromRowToForm();
 }
 
 const editNumberRow = () => {
@@ -55,9 +65,9 @@ const sumReceipt = () => {
     document.getElementById("costSummary-sum").innerHTML = Number(sum).toFixed(2) + 'zł';
 }
 
-
-function editRow() {
-    var table = document.getElementById("tbody-products"), rIndex;
+const updateCopyFromRowToForm = () => {
+    table = document.getElementById("tbody-products")
+    rIndex = undefined;
     for (var i = 0; i < table.rows.length; i++) {
         table.rows[i].onclick = function () {
             rIndex = this.rowIndex;
@@ -68,11 +78,20 @@ function editRow() {
             document.getElementById("price").value = this.cells[3].innerHTML.split('zł')[0].replace(',', '.');
         };
     }
-    table.rows[rIndex-1].cells[1].innerHTML = document.getElementById("name").value;
-    table.rows[rIndex-1].cells[2].innerHTML = document.getElementById("quantity").value + "zł";
-    table.rows[rIndex-1].cells[3].innerHTML = document.getElementById("price").value + "zł";
-    table.rows[rIndex-1].cells[4].innerHTML = document.getElementById("quantity").value * document.getElementById("price").value + "zł";
+}
+
+
+function editRow() {
+    // var table = document.getElementById("tbody-products"), rIndex;
+    // rIndex = this.rowIndex;
+    console.log(rIndex - 1);
+    table.rows[rIndex - 1].cells[1].innerHTML = document.getElementById("name").value;
+    table.rows[rIndex - 1].cells[2].innerHTML = document.getElementById("quantity").value + "zł";
+    table.rows[rIndex - 1].cells[3].innerHTML = document.getElementById("price").value + "zł";
+    table.rows[rIndex - 1].cells[4].innerHTML = document.getElementById("quantity").value * document.getElementById("price").value + "zł";
     sumReceipt();
+    updateCopyFromRowToForm();
 }
 
 sumReceipt();
+updateCopyFromRowToForm();
