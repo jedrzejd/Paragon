@@ -49,7 +49,7 @@ const editNumberRow = () => {
 
     for (var i = 0; i < table.rows.length; i++) {
         table.rows[i].cells[0].innerHTML = i + 1;
-        table.rows[i].cells[5].innerHTML = `<input type="submit" value="Usuń" id="Delete_button" onclick="deleteRow(${i})"></input>`;
+        table.rows[i].cells[5].innerHTML = `<input type="submit" value="Usuń" id="Delete_button" class="btn btn-danger" onclick="deleteRow(${i})"></input>`;
     }
 }
 
@@ -74,7 +74,7 @@ const updateCopyFromRowToForm = () => {
             console.log(rIndex);
 
             document.getElementById("name").value = this.cells[1].innerHTML;
-            document.getElementById("quantity").value = this.cells[2].innerHTML.split('zł')[0].replace(',', '.');
+            document.getElementById("quantity").value = this.cells[2].innerHTML.replace(',', '.');
             document.getElementById("price").value = this.cells[3].innerHTML.split('zł')[0].replace(',', '.');
         };
     }
@@ -86,7 +86,7 @@ function editRow() {
     // rIndex = this.rowIndex;
     console.log(rIndex - 1);
     table.rows[rIndex - 1].cells[1].innerHTML = document.getElementById("name").value;
-    table.rows[rIndex - 1].cells[2].innerHTML = document.getElementById("quantity").value + "zł";
+    table.rows[rIndex - 1].cells[2].innerHTML = document.getElementById("quantity").value;
     table.rows[rIndex - 1].cells[3].innerHTML = document.getElementById("price").value + "zł";
     table.rows[rIndex - 1].cells[4].innerHTML = document.getElementById("quantity").value * document.getElementById("price").value + "zł";
     sumReceipt();
