@@ -10,6 +10,16 @@
   #paragon {
     text-indent: 100px;
   }
+
+  table tr {
+    cursor: pointer;
+    transition: all .25s ease-in-out;
+  }
+
+  table tr:hover {
+    background-color: #ddd;
+  }
+
 </style>
 
 <head>
@@ -40,6 +50,7 @@
     </div>
 
     <input type="submit" value="Dodaj" id="Add_button" onclick="buttonSubmit()">
+    <button onclick="editRow();">Edit Row</button><br><br>
     <h4 id="paragon">Paragon</h4>
   </form>
 
@@ -56,15 +67,15 @@
       </tr>
     </thead>
     <tbody id="tbody-products">
-      <tr>
-        <td>1</td>
-        <td>Jabłka</td>
-        <td>1,5</td>
-        <td>4,90zł</td>
-        <td>7,35zł</td>
-        <td>
-          <input type="submit" value="Usuń" id="Delete_button" onclick="deleteRow(0)"></td>
-        </td>
+      <td>1</td>
+      <td>Jabłka</td>
+      <td>1,5</td>
+      <td>4,90zł</td>
+      <td>7,35zł</td>
+      <td>
+        <input type="submit" value="Usuń" id="Delete_button" onclick="deleteRow(0)">
+      </td>
+      </td>
       </tr>
       <tr>
         <td>2</td>
@@ -73,16 +84,17 @@
         <td>0.49zł</td>
         <td>2,45zł</td>
         <td>
-          <input type="submit" value="Usuń" id="Delete_button" onclick="deleteRow(1)"></td>
+          <input type="submit" value="Usuń" id="Delete_button" onclick="deleteRow(1)">
+        </td>
         </td>
       </tr>
     </tbody>
   </table>
-  
+
   <div>
     <p>Razem</p>
     <p id="costSummary-sum"></p>
-  </dic>
+  </div>
   <script src="/Users/yendrula/Downloads/JavaScript/Paragon/script.js"></script>
 </body>
 
