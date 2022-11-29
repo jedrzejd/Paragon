@@ -22,8 +22,7 @@ const buttonSubmit = () => {
     let template = `<tr> <td></td> <td>${nameInput}</td> <td>${quantityInput}</td> <td>${priceInput}zł</td> <td>${quantityInput * priceInput}zł</td> <td> <input type="submit" value="Usuń" class="btn btn-danger" id="Delete_button" onclick="deleteRow(${rows.length})"></td></tr> `;
 
     table.innerHTML += template;
-
-    // console.log(rows.length);
+    
     rows[rows.length - 1].children[0]["innerText"] = rows.length;
     rows[rows.length - 1].onclick = function () {
         rIndex = this.rowIndex;
@@ -33,14 +32,12 @@ const buttonSubmit = () => {
         document.getElementById("quantity").value = this.cells[2].innerHTML.split('zł')[0].replace(',', '.');
         document.getElementById("price").value = this.cells[3].innerHTML.split('zł')[0].replace(',', '.');
     };
-    // getSelectedRow();
     sumReceipt();
     updateCopyFromRowToForm();
 }
 
 const deleteRow = (number) => {
     document.getElementById("tbody-products").deleteRow(number);
-    // getSelectedRow();
     editNumberRow();
     sumReceipt();
     updateCopyFromRowToForm();
@@ -61,7 +58,6 @@ const sumReceipt = () => {
     for (var i = 0; i < table.rows.length; i++) {
         let value = table.rows[i].cells[4].innerHTML.split('zł')[0].replace(',', '.');
         value = Number(value);
-        // console.log(value);
         sum += value;
     }
     document.getElementById("costSummary-sum").innerHTML = Number(sum).toFixed(2) + 'zł';
@@ -72,11 +68,7 @@ const updateCopyFromRowToForm = () => {
     rIndex = undefined;
     for (var i = 0; i < table.rows.length; i++) {
         table.rows[i].onclick = function () {
-            // if(typeof rIndex !== "undefined"){
-            //     table.rows[rIndex].classList.toggle("selected");
-            // }
             rIndex = this.rowIndex;
-            // this.classList.toggle("selected");
             console.log(rIndex);
 
             document.getElementById("name").value = this.cells[1].innerHTML;
@@ -85,33 +77,20 @@ const updateCopyFromRowToForm = () => {
         };
     }
 }
-// function getSelectedRow(){
-//     index = undefined;
-//     table = document.getElementById("tbody-products");
-//     for (var i = 0; i < table.rows.length; i++) {
-//         table.rows[i].onclick = function () {
-//             if(typeof index !== "undefined"){
-//                 table.rows[index].classList.toggle("selected");
-//             }
-//             index = this.rowIndex;
-//             this.classList.toggle("selected");
 
-//         };
-//     }
-// }
 
-function upNdown(direction){
+function upNdown(direction) {
     var rows = document.getElementById("products").rows,
         parent = rows[rIndex].parentNode;
-    if (direction === "up"){
-        if(rIndex > 1){
+    if (direction === "up") {
+        if (rIndex > 1) {
             parent.insertBefore(rows[rIndex], rows[rIndex - 1]);
             rIndex--;
         }
     }
 
-    if (direction === "down"){
-        if(rIndex < rows.length - 1) {
+    if (direction === "down") {
+        if (rIndex < rows.length - 1) {
             parent.insertBefore(rows[rIndex + 1], rows[rIndex]);
             rIndex++;
         }
@@ -121,8 +100,6 @@ function upNdown(direction){
 
 
 function editRow() {
-    // var table = document.getElementById("tbody-products"), rIndex;
-    // rIndex = this.rowIndex;
     console.log(rIndex - 1);
     table.rows[rIndex - 1].cells[1].innerHTML = document.getElementById("name").value;
     table.rows[rIndex - 1].cells[2].innerHTML = document.getElementById("quantity").value;
@@ -136,5 +113,5 @@ function editRow() {
 
 sumReceipt();
 updateCopyFromRowToForm();
-// getSelectedRow();
+
 
