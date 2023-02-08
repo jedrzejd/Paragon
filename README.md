@@ -1,4 +1,6 @@
 # Paragon
 
-Projekt paragon na zajęcia programowanie aplikacji w JS.
-Dawid Piecek, Jędrzej Dudzicz.
+Project receipt for class application programming in pure JS.
+Created by:
+- Dawid Piecek
+- Jędrzej Dudzicz
